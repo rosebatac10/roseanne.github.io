@@ -14,6 +14,7 @@ body{font-family:'Inter',sans-serif;margin:0;background:#f8fafc;color:#1f2937;li
 nav{position:sticky;top:0;background:white;border-bottom:1px solid #e5e7eb;padding:15px 8%;display:flex;justify-content:space-between;align-items:center;z-index:1000}
 nav a{text-decoration:none;color:#374151;margin-left:20px;font-weight:500}
 
+
 .hero{padding:110px 8%;background:linear-gradient(135deg,#0f172a,#1e293b);color:white}
 .hero h1{font-size:44px;margin-bottom:10px}
 .hero p{max-width:650px;font-size:18px;color:#d1d5db}
@@ -53,10 +54,6 @@ animation:glowPulse 2s ease-in-out infinite;
 0%{box-shadow:0 18px 40px rgba(0,0,0,0.18), 0 0 0 3px rgba(245,158,11,0.55), 0 0 14px rgba(245,158,11,0.45);} 
 50%{box-shadow:0 20px 45px rgba(0,0,0,0.22), 0 0 0 4px rgba(245,158,11,0.75), 0 0 30px rgba(245,158,11,0.75);} 
 100%{box-shadow:0 18px 40px rgba(0,0,0,0.18), 0 0 0 3px rgba(245,158,11,0.55), 0 0 14px rgba(245,158,11,0.45);} 
-}
- 
-50%{box-shadow:0 16px 35px rgba(0,0,0,0.18), 0 0 0 3px rgba(99,102,241,0.45), 0 0 22px rgba(99,102,241,0.45);} 
-100%{box-shadow:0 16px 35px rgba(0,0,0,0.15), 0 0 0 2px rgba(99,102,241,0.35), 0 0 10px rgba(99,102,241,0.25);} 
 }
 
 .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 20px;max-width:900px;margin:10px auto 10px auto}
@@ -116,7 +113,7 @@ border-radius:50%;
 box-shadow:0 0 0 4px #f8fafc;
 }
 
-.card{opacity:0;transform:translateY(20px);animation:fadeUp 0.7s ease forwards}
+.reveal{opacity:0;transform:translateY(20px);animation:fadeUp 0.7s ease forwards}
 .card:nth-child(2){animation-delay:0.05s}
 .card:nth-child(3){animation-delay:0.1s}
 .card:nth-child(4){animation-delay:0.15s}
@@ -350,6 +347,14 @@ May 2024 – March 2026</p>
 <script>
 // Toggle highlight when a card is clicked
 const cards = document.querySelectorAll('.card');
+
+// add reveal animation class after page loads
+window.addEventListener('load', () => {
+  document.querySelectorAll('.card').forEach((el,i)=>{
+    el.classList.add('reveal');
+    el.style.animationDelay = (i*0.05)+'s';
+  });
+});
 cards.forEach(card => {
   card.addEventListener('click', () => {
     card.classList.toggle('selected');
